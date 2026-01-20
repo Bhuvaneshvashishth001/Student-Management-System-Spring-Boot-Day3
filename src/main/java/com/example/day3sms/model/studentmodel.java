@@ -16,8 +16,6 @@ public class studentmodel {
 
     @Id
     private String id;
-
-
     private String name;
     private int age;
     private String email;
