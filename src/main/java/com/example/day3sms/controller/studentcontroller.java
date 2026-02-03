@@ -1,8 +1,11 @@
 package com.example.day3sms.controller;
 
 
+import com.example.day3sms.DTO.StudentRequestDto;
+import com.example.day3sms.DTO.StudentResponseDto;
 import com.example.day3sms.model.studentmodel;
 import com.example.day3sms.service.studentService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,23 +20,26 @@ public class studentcontroller {
     }
     // create function api
     @PostMapping("/add-student")
-    public studentmodel addStudent(@RequestBody studentmodel student){
+    public StudentResponseDto addStudent( @Valid @RequestBody StudentRequestDto student){
         return service.addStudent(student);
     }
      @GetMapping("/students")
 
-    public List<studentmodel> getStudents(){
-        return service.getStudents();
+    public List<StudentResponseDto> getStudents(){
+        return service.getAllStudents();
      }
 
-     @PutMapping("/update/{id}")
-    public studentmodel updateStudent(@PathVariable String id, @RequestBody studentmodel student){
-        return service.updateStudent(id,student);
-     }
+    @PutMapping("/update/{id}")
+    public StudentResponseDto updateStudent(
+            @PathVariable String id,
+            @RequestBody StudentRequestDto dto) {
 
-     @DeleteMapping("/delete/{id}")
-    public studentmodel deleteStudent(@PathVariable String id) {
+        return service.updateStudent(id, dto);
+    }
+
+
+    @DeleteMapping("/delete/{id}")
+    public StudentResponseDto deleteStudent(@PathVariable String id) {
          return service.deleteStudent(id);
      }
-
 }

@@ -1,13 +1,13 @@
 package com.example.day3sms.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Data
+@Getter
+@Setter
+//@Data // no need when getter and setter constructor is already specified because it have more constructors which are not needed
 @AllArgsConstructor
 @NoArgsConstructor
 @Document (collection = "students")
